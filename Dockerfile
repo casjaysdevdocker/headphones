@@ -13,8 +13,8 @@ ENV SHELL=/bin/bash \
 RUN mkdir -p /bin/ /config/ /data/ && \
   rm -Rf /bin/.gitkeep /config/.gitkeep /data/.gitkeep && \
   apk update -U --no-cache && \
-  apk add -U --no-cache python git && \
-  git clone https://github.com/rembo10/headphones /var/lib/headphones -q
+  apk add -U --no-cache python3 git ffmpeg flac mc && \
+  git clone --depth 1 https://github.com/rembo10/headphones /var/lib/headphones -q
 
 COPY ./bin/. /usr/local/bin/
 COPY ./config/. /etc/
