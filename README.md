@@ -18,9 +18,11 @@ docker run -d \
 --name casjaysdevdocker-headphones \
 --hostname casjaysdev-headphones \
 -e TZ=${TIMEZONE:-America/New_York} \
+-v $HOME/Music:/data/music \
+-v $HOME/Downloads/Music:/data/downloads \
 -v $HOME/.local/share/docker/storage/headphones/headphones/data:/data \
 -v $HOME/.local/share/docker/storage/headphones/headphones/config:/config \
--p 80:80 \
+-p 8181:8181 \
 casjaysdevdocker/headphones:latest
 ```
 
@@ -36,10 +38,12 @@ services:
       - TZ=America/New_York
       - HOSTNAME=casjaysdev-headphones
     volumes:
+      - $HOME/Music:/data/music:z
+      - $HOME/Downloads/Music:/data/downloads:z
       - $HOME/.local/share/docker/storage/headphones/data:/data:z
       - $HOME/.local/share/docker/storage/headphones/config:/config:z
     ports:
-      - 80:80
+      - 8181:8181
     restart: always
 ```
 
